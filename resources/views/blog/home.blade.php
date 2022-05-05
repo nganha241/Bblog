@@ -13,21 +13,23 @@
 			<div class="col-md-8">
 				<h5 class="font-weight-bold spanborder"><span>MỚI</span></h5>
 				@foreach ($posts as $post)
-				<div class="mb-3 d-flex justify-content-between">
-					<div class="pr-3">
-						<h2 class="mb-1 h4 font-weight-bold">
-						<a class="text-dark" href="{{$post->getShowURL()}}">{{$post->title}}</a>
-						</h2>
-						<p>
-							{!!$post->description()!!}...
-						</p>
-						<small class="text-muted">
-							{{$post->created_at}} - 
-							{{$post->category->name}}
-						</small>
-					</div>
-					<img height="120" src="{{asset($post->avatar)}}">
-				</div>
+					@if ($post->category->name != 'Tin tức')
+						<div class="mb-3 d-flex justify-content-between">
+							<div class="pr-3">
+								<h2 class="mb-1 h4 font-weight-bold">
+								<a class="text-dark" href="{{$post->getShowURL()}}">{{$post->title}}</a>
+								</h2>
+								<p>
+									{!!$post->description()!!}...
+								</p>
+								<small class="text-muted">
+									{{$post->created_at}} - 
+									{{$post->category->name}}
+								</small>
+							</div>
+							<img height="120" src="{{asset($post->avatar)}}">
+						</div>
+					@endif
 				@endforeach
 			</div>
 			<div class="col-md-4 ">

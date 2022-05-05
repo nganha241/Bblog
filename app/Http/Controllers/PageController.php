@@ -23,9 +23,12 @@ class PageController extends Controller
         $keyword = $request->input('keyword');
         
         if($keyword) {
-            $posts = Post::where('title', 'like', "%{$keyword}%")->paginate(3);
+            $posts = Post::where('title', 'like', "%{$keyword}%")->paginate(10);
+            // if($posts == NULL){dd($posts);
+            //     return view('blog.404', compact('categories'));
+            // }
+            return view('blog.search', compact('categories', 'posts'));
         }
-        return view('blog.search', compact('categories', 'posts'));
     }
 
     public function category($slug)
